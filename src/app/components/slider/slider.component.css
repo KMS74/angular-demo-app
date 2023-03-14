@@ -1,0 +1,6 @@
+.slider-img {
+  /* height: 50%; */
+  object-fit: cover;
+  height: 600px;
+  filter: brightness(60%);
+}

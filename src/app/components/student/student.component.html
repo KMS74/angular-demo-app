@@ -1,16 +1,21 @@
 <div class="container">
   <!-- Student Form -->
-  <form class="w-75 mx-auto my-4">
+  <form class="w-75 mx-auto my-4 p-4">
     <div class="mb-3">
       <label for="name" class="form-label">Student Name</label>
       <input
         type="text"
         [(ngModel)]="studentName"
         name="name"
-        class="form-control"
+        class="form-control border"
+        [ngClass]="{ 'border-danger': !isValidName }"
+        (input)="validateName()"
         id="name"
         placeholder="Enter student name"
       />
+      <small *ngIf="!isValidName" class="text-danger"
+        >Name Must be a String and with minumum 3 Letters!</small
+      >
     </div>
     <div class="mb-3">
       <label for="age" class="form-label">Student Age</label>
@@ -19,15 +24,20 @@
         [(ngModel)]="studentAge"
         name="age"
         class="form-control"
+        [ngClass]="{ 'border border-danger': !isValidAge }"
+        (input)="validateAge()"
         id="age"
         placeholder="Enter student age"
       />
+      <small *ngIf="!isValidAge" class="text-danger"
+        >Age Must be greater than 18</small
+      >
     </div>
 
     <!-- disable button conditionally -->
     <!-- attribute data binding -->
     <button
-      [disabled]="studentName.length == 0 || studentAge.length == 0"
+      [disabled]="!isFormValid()"
       (click)="addStudent()"
       type="submit"
       class="btn btn-primary"

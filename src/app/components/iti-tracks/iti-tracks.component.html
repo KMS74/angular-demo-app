@@ -1,0 +1,12 @@
+<label class="form-label" for="tarck">ITI Tracks</label>
+<select id="track" [(ngModel)]="selectedTrack" class="form-select">
+  <option selected disabled>Select One Track</option>
+  <option *ngFor="let track of tracks" [value]="track">
+    {{ track }}
+  </option>
+</select>
+
+<p class="lead my-4" *ngIf="selectedTrack">
+  Selected Track:
+  <strong class="badge text-bg-warning">{{ selectedTrack }}</strong>
+</p>

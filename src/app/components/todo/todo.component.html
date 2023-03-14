@@ -1,1 +1,40 @@
-<p>todo works!</p>
+<div class="container">
+  <h2 class="text-center my-4">Todo List</h2>
+  <!-- todo form -->
+  <div class="row w-75 mx-auto my-4">
+    <div class="col-8">
+      <input
+        class="form-control"
+        [(ngModel)]="todo"
+        type="text"
+        placeholder="add todo item..."
+      />
+    </div>
+    <div class="col-4">
+      <button (click)="addTodo()" class="btn btn-success">Add Todo</button>
+    </div>
+  </div>
+
+  <!-- todo list table -->
+  <table *ngIf="todos.length > 0" class="table my-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Todo Item</th>
+        <th scope="col">Actios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ todo }}</td>
+        <td class="d-flex gap-3">
+          <!-- <button class="btn btn-primary">update</button> -->
+          <button (click)="deleteTodo(todo)" class="btn btn-sm btn-outline-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
