@@ -1,0 +1,56 @@
+<div class="container">
+  <!-- Student Form -->
+  <form class="w-75 mx-auto my-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Student Name</label>
+      <input
+        type="text"
+        [(ngModel)]="studentName"
+        name="name"
+        class="form-control"
+        id="name"
+        placeholder="Enter student name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="age" class="form-label">Student Age</label>
+      <input
+        type="text"
+        [(ngModel)]="studentAge"
+        name="age"
+        class="form-control"
+        id="age"
+        placeholder="Enter student age"
+      />
+    </div>
+
+    <!-- disable button conditionally -->
+    <!-- attribute data binding -->
+    <button
+      [disabled]="studentName.length == 0 || studentAge.length == 0"
+      (click)="addStudent()"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Add Student
+    </button>
+  </form>
+
+  <!-- Student List -->
+  <table *ngIf="students.length > 0" class="table my-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
